@@ -4,6 +4,6 @@ namespace spendTrack.App.Repositories
 {
     public interface IOutputGenerator
     {
-        Task GenerateOutput(CopyTraders copyTraders);
+        Task GenerateOutput(IndexFunds indexFunds, CopyTraders copyTraders);
     }
 }

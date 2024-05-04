@@ -10,5 +10,6 @@ namespace spendTrack.App.Repositories
     public interface IInvestingRepository
     {
         Task<CopyTraders> GetCopyTraders();
+        Task<IndexFunds> GetIndexFunds();
     }
 }
