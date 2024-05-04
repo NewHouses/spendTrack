@@ -18,6 +18,7 @@
         {
             Result = result;
             Profit = Result - TotalInvest;
+            ProfitIndex = Math.Round(100 * Profit / TotalInvest,2);
         }
     }
 }

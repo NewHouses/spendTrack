@@ -28,7 +28,13 @@
             MonthlyInvests.Add(MonthlyInvests.Count + 1, newMonthlyInvest);
 
             TotalInvest = MonthlyInvests.Sum(mi => mi.Value.Invest);
-            AvarageMonthlyProfitIndex = MonthlyInvests.Sum(mi => mi.Value.ProfitIndex) / MonthlyInvests.Count;
+            AvarageMonthlyProfitIndex = Math.Round(MonthlyInvests.Sum(mi => mi.Value.ProfitIndex) / MonthlyInvests.Count,2);
+        }
+
+        public void AddMonthlyResult(decimal result)
+        {
+            var lastMonth = MonthlyInvests.Last().Value;
+            lastMonth.AddResult(result);
         }
     }
 }
