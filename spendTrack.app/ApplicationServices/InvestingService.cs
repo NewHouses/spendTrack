@@ -15,10 +15,11 @@ namespace spendTrack.App.ApplicationServices
 
         public async Task GenerateCsv()
         {
+            var stocks = await repository.GetStocks();
             var indexFunds = await repository.GetIndexFunds();
             var copyTraders = await repository.GetCopyTraders();
 
-            await outputGenerator.GenerateOutput(indexFunds, copyTraders);
+            await outputGenerator.GenerateOutput(stocks, indexFunds, copyTraders);
         }
     }
 }

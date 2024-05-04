@@ -11,5 +11,6 @@ namespace spendTrack.App.Repositories
     {
         Task<CopyTraders> GetCopyTraders();
         Task<IndexFunds> GetIndexFunds();
+        Task<Stocks> GetStocks();
     }
 }
