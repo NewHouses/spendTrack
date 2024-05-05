@@ -51,5 +51,10 @@ namespace spendTrack.Infrastructure
         {
             invests.Stocks.UpdateMonthlyResult(month, stockName, result);
         }
+
+        public void UpdateIndexFundMonthlyResult(string month, string indexfundName, decimal result)
+        {
+            invests.IndexFunds.UpdateMonthlyResult(month, indexfundName, result);
+        }
     }
 }

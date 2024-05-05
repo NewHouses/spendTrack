@@ -28,5 +28,15 @@ namespace spendTrack.Invest.Domain
 
             indexFund.AddMonthlyInvest(month, invest);
         }
+
+        public void UpdateMonthlyResult(string month, string indexFundName, decimal result)
+        {
+            var stock = GetIndexFund(indexFundName);
+
+            if (stock is null)
+                throw new ArgumentException($"Index Fund {indexFundName} does not exist");
+
+            stock.UpdateMonthlyResult(month, result);
+        }
     }
 }

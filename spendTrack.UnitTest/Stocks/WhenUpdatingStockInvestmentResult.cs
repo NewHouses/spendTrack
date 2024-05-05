@@ -1,11 +1,11 @@
 ﻿using spendTrack.Invest.Domain;
 
-namespace spendTrack.UnitTest
+namespace spendTrack.UnitTest.Stocks
 {
-    public class WhenUpdatingResult
+    public class WhenUpdatingStockInvestmentResult
     {
         [Test]
-        public void StockMonthlyInvestementResultsAreUpdated()
+        public void MonthlyInvestementResultsAreUpdated()
         {
             var stock = new Stock("stock1");
             var firstMonth = "02/2024";
@@ -52,7 +52,7 @@ namespace spendTrack.UnitTest
         }
 
         [Test]
-        public void SeparatedStockMonthlyInvestementResultsAreUpdated()
+        public void SeparatedMonthlyInvestementResultsAreUpdated()
         {
             var stock = new Stock("stock1");
             var firstMonth = "02/2024";
