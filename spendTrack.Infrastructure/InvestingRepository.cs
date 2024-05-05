@@ -33,15 +33,13 @@ namespace spendTrack.Infrastructure
 
         public void AddStockMonthlyInvest(string month, string stockName, decimal amount)
         {
-            var stock = invests.Stocks.Stocks.GetValueOrDefault(stockName);
+            invests.Stocks.AddMonthlyInvest(month, stockName, amount);
+        }
 
-            if(stock is null)
-            {
-                stock = new Stock(stockName);
-                invests.Stocks.Stocks.Add(stockName, stock);
-            }
+        public void AddIndexFundMonthlyInvest(string month, string indexFundName, decimal amount)
+        {
+            invests.IndexFunds.AddMonthlyInvest(month, indexFundName, amount);
 
-            stock.AddMonthlyInvest(month, amount);
         }
     }
 }

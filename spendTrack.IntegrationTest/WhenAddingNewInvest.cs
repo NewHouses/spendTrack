@@ -47,6 +47,37 @@ namespace spendTrack.IntegrationTest
             Assert.That(stock.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
         }
 
+        [Test]
+        public async Task ExistintIndexFundIsUpdatedInTheAggregator()
+        {
+            var indexFundName = "indexFundTest";
+            var existingMonth = "03/2024";
+            var existingInvest = 100.00M;
+            var newMonth = "05/2024";
+            var indexFundInvest = 200.00M;
+            var indexFunds = await repository.GetIndexFunds();
+
+            service.AddIndexFundInvest(existingMonth, indexFundName, existingInvest);
+            service.AddIndexFundInvest(newMonth, indexFundName, indexFundInvest);
+
+            var indexFund = indexFunds.GetIndexFund(indexFundName);
+            Assert.That(indexFund.Name, Is.EqualTo(indexFundName));
+            Assert.That(indexFund.TotalInvest, Is.EqualTo(existingInvest + indexFundInvest));
+            Assert.That(indexFund.MonthlyInvests.Count, Is.EqualTo(2));
+            Assert.That(indexFund.MonthlyInvests[existingMonth].Month, Is.EqualTo(existingMonth));
+            Assert.That(indexFund.MonthlyInvests[existingMonth].TotalInvest, Is.EqualTo(existingInvest));
+            Assert.That(indexFund.MonthlyInvests[existingMonth].Invest, Is.EqualTo(existingInvest));
+            Assert.That(indexFund.MonthlyInvests[existingMonth].Profit, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[existingMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[existingMonth].Result, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Month, Is.EqualTo(newMonth));
+            Assert.That(indexFund.MonthlyInvests[newMonth].TotalInvest, Is.EqualTo(indexFundInvest));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Invest, Is.EqualTo(indexFundInvest));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Profit, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[newMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
+        }
+
         //[Test]
         //public async Task GeneratesTheCsv()
         //{

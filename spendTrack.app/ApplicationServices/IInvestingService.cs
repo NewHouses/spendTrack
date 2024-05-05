@@ -3,6 +3,7 @@
     public interface IInvestingService
     {
         void AddStockInvest(string month, string name, decimal amount);
+        void AddIndexFundInvest(string month, string name, decimal amount);
         //Task GenerateCsv(string filePath);
     }
 }

@@ -5,7 +5,7 @@ namespace spendTrack.Invest.Domain
     public class IndexFund : Invest
     {
         public string Name { get; set; }
-        public IndexFund(string name, Dictionary<string, MonthlyInvest> monthlyInvests) : base(monthlyInvests)
+        public IndexFund(string name) : base(new Dictionary<string, MonthlyInvest>())
         {
             Name = name;
         }

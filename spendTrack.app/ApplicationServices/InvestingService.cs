@@ -18,6 +18,11 @@ namespace spendTrack.App.ApplicationServices
             repository.AddStockMonthlyInvest(month, name, amount);
         }
 
+        public void AddIndexFundInvest(string month, string name, decimal amount)
+        {
+            repository.AddIndexFundMonthlyInvest(month, name, amount);
+        }
+
         //public async Task GenerateCsv(string filePath)
         //{
         //    var stocks = await repository.GetStocks();

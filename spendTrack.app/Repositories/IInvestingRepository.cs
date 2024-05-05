@@ -9,5 +9,6 @@ namespace spendTrack.App.Repositories
         Task<StockAggregator> GetStocks();
         Stock GetStockByName(string name);
         void AddStockMonthlyInvest(string month, string name, decimal amount);
+        void AddIndexFundMonthlyInvest(string month, string name, decimal amount);
     }
 }
