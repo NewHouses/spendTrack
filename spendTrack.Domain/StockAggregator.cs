@@ -15,14 +15,14 @@
             return Stocks.GetValueOrDefault(name);
         }
 
-        public void AddMonthlyInvest(string month, string name, decimal invest)
+        public void AddMonthlyInvest(string month, string stockName, decimal invest)
         {
-            var stock = GetStock(name);
+            var stock = GetStock(stockName);
 
             if (stock is null)
             {
-                stock = new Stock(name);
-                Stocks.Add(name, stock);
+                stock = new Stock(stockName);
+                Stocks.Add(stockName, stock);
             }
 
             stock.AddMonthlyInvest(month, invest);

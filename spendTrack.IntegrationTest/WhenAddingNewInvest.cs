@@ -78,6 +78,37 @@ namespace spendTrack.IntegrationTest
             Assert.That(indexFund.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
         }
 
+        [Test]
+        public async Task ExistintCopyTraderIsUpdatedInTheAggregator()
+        {
+            var copyTraderName = "copyTraderTest";
+            var existingMonth = "03/2024";
+            var existingInvest = 100.00M;
+            var newMonth = "05/2024";
+            var copyTraderInvest = 200.00M;
+            var copyTraders = await repository.GetCopyTraders();
+
+            service.AddCopyTraderInvest(existingMonth, copyTraderName, existingInvest);
+            service.AddCopyTraderInvest(newMonth, copyTraderName, copyTraderInvest);
+
+            var copyTrader = copyTraders.GetCopyTrader(copyTraderName);
+            Assert.That(copyTrader.Name, Is.EqualTo(copyTraderName));
+            Assert.That(copyTrader.TotalInvest, Is.EqualTo(existingInvest + copyTraderInvest));
+            Assert.That(copyTrader.MonthlyInvests.Count, Is.EqualTo(2));
+            Assert.That(copyTrader.MonthlyInvests[existingMonth].Month, Is.EqualTo(existingMonth));
+            Assert.That(copyTrader.MonthlyInvests[existingMonth].TotalInvest, Is.EqualTo(existingInvest));
+            Assert.That(copyTrader.MonthlyInvests[existingMonth].Invest, Is.EqualTo(existingInvest));
+            Assert.That(copyTrader.MonthlyInvests[existingMonth].Profit, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[existingMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[existingMonth].Result, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Month, Is.EqualTo(newMonth));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].TotalInvest, Is.EqualTo(copyTraderInvest));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Invest, Is.EqualTo(copyTraderInvest));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Profit, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
+        }
+
         //[Test]
         //public async Task GeneratesTheCsv()
         //{

@@ -16,14 +16,14 @@ namespace spendTrack.Invest.Domain
             return IndexFunds.GetValueOrDefault(name);
         }
 
-        public void AddMonthlyInvest(string month, string name, decimal invest)
+        public void AddMonthlyInvest(string month, string indexFundName, decimal invest)
         {
-            var indexFund = GetIndexFund(name);
+            var indexFund = GetIndexFund(indexFundName);
 
             if (indexFund is null)
             {
-                indexFund = new IndexFund(name);
-                IndexFunds.Add(name, indexFund);
+                indexFund = new IndexFund(indexFundName);
+                IndexFunds.Add(indexFundName, indexFund);
             }
 
             indexFund.AddMonthlyInvest(month, invest);

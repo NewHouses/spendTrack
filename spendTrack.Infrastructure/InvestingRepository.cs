@@ -41,5 +41,10 @@ namespace spendTrack.Infrastructure
             invests.IndexFunds.AddMonthlyInvest(month, indexFundName, amount);
 
         }
+
+        public void AddCopyTraderMonthlyInvest(string month, string copyTraderName, decimal amount)
+        {
+            invests.CopyTraders.AddMonthlyInvest(month, copyTraderName, amount);
+        }
     }
 }

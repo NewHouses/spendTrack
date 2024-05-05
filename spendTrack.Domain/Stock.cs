@@ -10,7 +10,5 @@ namespace spendTrack.Invest.Domain
         {
             Name = name;
         }
-
-
     }
 }
