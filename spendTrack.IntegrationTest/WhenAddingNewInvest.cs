@@ -28,7 +28,7 @@ namespace spendTrack.IntegrationTest
             var stocks = await repository.GetStocks();
 
             service.AddStockInvest(existingMonth, stockName, existingInvest);
-            service.UpdateStockResult(existingMonth, stockName, existingResult);
+            service.UpdateStockResUpdateStockResultult(existingMonth, stockName, existingResult);
             service.AddStockInvest(newMonth, stockName, stockInvest);
 
             var stock = stocks.GetStock(stockName);
@@ -52,12 +52,14 @@ namespace spendTrack.IntegrationTest
             var indexFundName = "indexFundTest";
             var existingMonth = "03/2024";
             var existingInvest = 100.00M;
+            var existingResult = 150.00M;
             var newMonth = "05/2024";
             var indexFundInvest = 200.00M;
             var indexFunds = await repository.GetIndexFunds();
 
             service.AddIndexFundInvest(existingMonth, indexFundName, existingInvest);
-          //  service.AddIndexFundInvest(newMonth, indexFundName, indexFundInvest);
+            service.UpdateIndexFundResUpdateStockResultult(existingMonth, indexFundName, existingResult);
+            service.AddIndexFundInvest(newMonth, indexFundName, indexFundInvest);
 
             var indexFund = indexFunds.GetIndexFund(indexFundName);
             Assert.That(indexFund.Name, Is.EqualTo(indexFundName));
@@ -66,15 +68,12 @@ namespace spendTrack.IntegrationTest
             Assert.That(indexFund.MonthlyInvests[existingMonth].Month, Is.EqualTo(existingMonth));
             Assert.That(indexFund.MonthlyInvests[existingMonth].TotalInvest, Is.EqualTo(existingInvest));
             Assert.That(indexFund.MonthlyInvests[existingMonth].Invest, Is.EqualTo(existingInvest));
-            Assert.That(indexFund.MonthlyInvests[existingMonth].Profit, Is.EqualTo(0));
-            Assert.That(indexFund.MonthlyInvests[existingMonth].ProfitIndex, Is.EqualTo(0));
-            Assert.That(indexFund.MonthlyInvests[existingMonth].Result, Is.EqualTo(0));
-            //Assert.That(indexFund.MonthlyInvests[newMonth].Month, Is.EqualTo(newMonth));
-            //Assert.That(indexFund.MonthlyInvests[newMonth].TotalInvest, Is.EqualTo(indexFundInvest));
-            //Assert.That(indexFund.MonthlyInvests[newMonth].Invest, Is.EqualTo(indexFundInvest));
-            //Assert.That(indexFund.MonthlyInvests[newMonth].Profit, Is.EqualTo(0));
-            //Assert.That(indexFund.MonthlyInvests[newMonth].ProfitIndex, Is.EqualTo(0));
-            //Assert.That(indexFund.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Month, Is.EqualTo(newMonth));
+            Assert.That(indexFund.MonthlyInvests[newMonth].TotalInvest, Is.EqualTo(indexFundInvest + existingResult));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Invest, Is.EqualTo(indexFundInvest));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Profit, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[newMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(indexFund.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
         }
 
         [Test]
@@ -83,12 +82,14 @@ namespace spendTrack.IntegrationTest
             var copyTraderName = "copyTraderTest";
             var existingMonth = "03/2024";
             var existingInvest = 100.00M;
+            var existingResult = 150.00M;
             var newMonth = "05/2024";
             var copyTraderInvest = 200.00M;
             var copyTraders = await repository.GetCopyTraders();
 
             service.AddCopyTraderInvest(existingMonth, copyTraderName, existingInvest);
-         //   service.AddCopyTraderInvest(newMonth, copyTraderName, copyTraderInvest);
+            service.UpdateCopyTraderResUpdateStockResultult(existingMonth, copyTraderName, existingResult);
+            service.AddCopyTraderInvest(newMonth, copyTraderName, copyTraderInvest);
 
             var copyTrader = copyTraders.GetCopyTrader(copyTraderName);
             Assert.That(copyTrader.Name, Is.EqualTo(copyTraderName));
@@ -97,15 +98,12 @@ namespace spendTrack.IntegrationTest
             Assert.That(copyTrader.MonthlyInvests[existingMonth].Month, Is.EqualTo(existingMonth));
             Assert.That(copyTrader.MonthlyInvests[existingMonth].TotalInvest, Is.EqualTo(existingInvest));
             Assert.That(copyTrader.MonthlyInvests[existingMonth].Invest, Is.EqualTo(existingInvest));
-            Assert.That(copyTrader.MonthlyInvests[existingMonth].Profit, Is.EqualTo(0));
-            Assert.That(copyTrader.MonthlyInvests[existingMonth].ProfitIndex, Is.EqualTo(0));
-            Assert.That(copyTrader.MonthlyInvests[existingMonth].Result, Is.EqualTo(0));
-            //Assert.That(copyTrader.MonthlyInvests[newMonth].Month, Is.EqualTo(newMonth));
-            //Assert.That(copyTrader.MonthlyInvests[newMonth].TotalInvest, Is.EqualTo(copyTraderInvest));
-            //Assert.That(copyTrader.MonthlyInvests[newMonth].Invest, Is.EqualTo(copyTraderInvest));
-            //Assert.That(copyTrader.MonthlyInvests[newMonth].Profit, Is.EqualTo(0));
-            //Assert.That(copyTrader.MonthlyInvests[newMonth].ProfitIndex, Is.EqualTo(0));
-            //Assert.That(copyTrader.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Month, Is.EqualTo(newMonth));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].TotalInvest, Is.EqualTo(copyTraderInvest));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Invest, Is.EqualTo(copyTraderInvest));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Profit, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(copyTrader.MonthlyInvests[newMonth].Result, Is.EqualTo(0));
         }
 
         //[Test]
