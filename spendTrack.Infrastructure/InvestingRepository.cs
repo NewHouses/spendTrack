@@ -5,30 +5,43 @@ namespace spendTrack.Infrastructure
 {
     public class InvestingRepository : IInvestingRepository
     {
-        private readonly Stocks stocks;
-        private readonly CopyTraders copyTraders;
-        private readonly IndexFunds indexFunds;
+        private readonly Invests invests;
 
         public InvestingRepository()
         {
-            stocks = new Stocks(new Dictionary<int, MonthlyInvest>());
-            copyTraders = new CopyTraders(new Dictionary<int, MonthlyInvest>());
-            indexFunds = new IndexFunds(new Dictionary<int, MonthlyInvest>());
+            invests = new Invests(new List<Stock>(), new List<IndexFund>(), new List<CopyTrader>());
+        }
+        public Task<StockAggregator> GetStocks()
+        {
+            return Task.FromResult(invests.Stocks);
         }
 
-        public Task<CopyTraders> GetCopyTraders()
+        public Task<IndexFundAggregator> GetIndexFunds()
         {
-            return Task.FromResult(copyTraders);
+            return Task.FromResult(invests.IndexFunds);
         }
 
-        public Task<IndexFunds> GetIndexFunds()
+        public Task<CopyTraderAggregator> GetCopyTraders()
         {
-            return Task.FromResult(indexFunds);
+            return Task.FromResult(invests.CopyTraders);
         }
 
-        public Task<Stocks> GetStocks()
+        public Stock GetStockByName(string name)
         {
-            return Task.FromResult(stocks);
+            return invests.Stocks.GetStock(name);
+        }
+
+        public void AddStockMonthlyInvest(string month, string stockName, decimal amount)
+        {
+            var stock = invests.Stocks.Stocks.GetValueOrDefault(stockName);
+
+            if(stock is null)
+            {
+                stock = new Stock(stockName);
+                invests.Stocks.Stocks.Add(stockName, stock);
+            }
+
+            stock.AddMonthlyInvest(month, amount);
         }
     }
 }

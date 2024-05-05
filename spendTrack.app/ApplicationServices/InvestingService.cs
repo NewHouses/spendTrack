@@ -13,13 +13,18 @@ namespace spendTrack.App.ApplicationServices
             this.outputGenerator = outputGenerator;
         }
 
-        public async Task GenerateCsv()
+        public void AddStockInvest(string month, string name, decimal amount)
         {
-            var stocks = await repository.GetStocks();
-            var indexFunds = await repository.GetIndexFunds();
-            var copyTraders = await repository.GetCopyTraders();
-
-            await outputGenerator.GenerateOutput(stocks, indexFunds, copyTraders);
+            repository.AddStockMonthlyInvest(month, name, amount);
         }
+
+        //public async Task GenerateCsv(string filePath)
+        //{
+        //    var stocks = await repository.GetStocks();
+        //    var indexFunds = await repository.GetIndexFunds();
+        //    var copyTraders = await repository.GetCopyTraders();
+
+        //    await outputGenerator.GenerateOutput(stocks, indexFunds, copyTraders, filePath);
+        //}
     }
 }

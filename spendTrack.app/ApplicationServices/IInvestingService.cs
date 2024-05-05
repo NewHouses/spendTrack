@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace spendTrack.App.ApplicationServices
+﻿namespace spendTrack.App.ApplicationServices
 {
     public interface IInvestingService
     {
-        Task GenerateCsv();
+        void AddStockInvest(string month, string name, decimal amount);
+        //Task GenerateCsv(string filePath);
     }
 }
