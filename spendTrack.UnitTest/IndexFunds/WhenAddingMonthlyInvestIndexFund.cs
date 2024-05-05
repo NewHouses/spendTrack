@@ -2,7 +2,7 @@ using spendTrack.Invest.Domain;
 
 namespace spendTrack.UnitTest.IndexFunds
 {
-    public class WhenAddingMonthlyInvestIndexFund
+    public class WhenAddingMonthlyInvestCopyTrader
     {
         [Test]
         public void IndexFundMonthlyInvestementIsAdded()

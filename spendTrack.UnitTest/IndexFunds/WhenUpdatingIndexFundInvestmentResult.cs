@@ -2,7 +2,7 @@
 
 namespace spendTrack.UnitTest.IndexFunds
 {
-    public class WhenUpdatingIndexFundInvestmentResult
+    public class WhenUpdatingCopyTraderInvestmentResult
     {
         [Test]
         public void MonthlyInvestementResultsAreUpdated()

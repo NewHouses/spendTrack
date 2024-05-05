@@ -30,12 +30,17 @@ namespace spendTrack.App.ApplicationServices
 
         public void UpdateStockResult(string month, string stockName, decimal result)
         {
-            repository.UpdateCopyTraderMonthlyResult(month, stockName, result);
+            repository.UpdateStockMonthlyResult(month, stockName, result);
         }
 
         public void UpdateIndexFundResult(string month, string indexfundName, decimal result)
         {
             repository.UpdateIndexFundMonthlyResult(month, indexfundName, result);
+        }
+
+        public void UpdateCopyTraderResult(string month, string copytraderName, decimal result)
+        {
+            repository.UpdateCopyTraderMonthlyResult(month, copytraderName, result);
         }
 
         //public async Task GenerateCsv(string filePath)

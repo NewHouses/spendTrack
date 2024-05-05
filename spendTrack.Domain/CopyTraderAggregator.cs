@@ -27,5 +27,15 @@
 
             copyTrader.AddMonthlyInvest(month, invest);
         }
+
+        public void UpdateMonthlyResult(string month, string copyTraderName, decimal result)
+        {
+            var copyTrader = GetCopyTrader(copyTraderName);
+
+            if (copyTrader is null)
+                throw new ArgumentException($"Copy Trader {copyTraderName} does not exist");
+
+            copyTrader.UpdateMonthlyResult(month, result);
+        }
     }
 }

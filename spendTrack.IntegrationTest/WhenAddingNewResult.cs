@@ -65,5 +65,30 @@ namespace spendTrack.IntegrationTest
             Assert.That(indexfund.MonthlyInvests[month].ProfitIndex, Is.EqualTo(expectingProfitIndex));
             Assert.That(indexfund.MonthlyInvests[month].Result, Is.EqualTo(result));
         }
+
+        [Test]
+        public async Task ExistingCopyTraderUpdatesResult()
+        {
+            var copytraderName = "copyTraderTest";
+            var month = "03/2024";
+            var existingInvest = 100.00M;
+            var result = 50.00M;
+            var expectingProfit = result - existingInvest;
+            var expectingProfitIndex = Math.Round(100 * expectingProfit / existingInvest);
+            var copytraders = await repository.GetCopyTraders();
+            service.AddCopyTraderInvest(month, copytraderName, existingInvest);
+
+            service.UpdateCopyTraderResult(month, copytraderName, result);
+
+            var copytrader = copytraders.GetCopyTrader(copytraderName);
+            Assert.That(copytrader.Name, Is.EqualTo(copytraderName));
+            Assert.That(copytrader.MonthlyInvests.Count, Is.EqualTo(1));
+            Assert.That(copytrader.MonthlyInvests[month].Month, Is.EqualTo(month));
+            Assert.That(copytrader.MonthlyInvests[month].TotalInvest, Is.EqualTo(existingInvest));
+            Assert.That(copytrader.MonthlyInvests[month].Invest, Is.EqualTo(existingInvest));
+            Assert.That(copytrader.MonthlyInvests[month].Profit, Is.EqualTo(expectingProfit));
+            Assert.That(copytrader.MonthlyInvests[month].ProfitIndex, Is.EqualTo(expectingProfitIndex));
+            Assert.That(copytrader.MonthlyInvests[month].Result, Is.EqualTo(result));
+        }
     }
 }

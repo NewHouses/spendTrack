@@ -47,7 +47,7 @@ namespace spendTrack.Infrastructure
             invests.CopyTraders.AddMonthlyInvest(month, copyTraderName, amount);
         }
 
-        public void UpdateCopyTraderMonthlyResult(string month, string stockName, decimal result)
+        public void UpdateStockMonthlyResult(string month, string stockName, decimal result)
         {
             invests.Stocks.UpdateMonthlyResult(month, stockName, result);
         }
@@ -55,6 +55,11 @@ namespace spendTrack.Infrastructure
         public void UpdateIndexFundMonthlyResult(string month, string indexfundName, decimal result)
         {
             invests.IndexFunds.UpdateMonthlyResult(month, indexfundName, result);
+        }
+
+        public void UpdateCopyTraderMonthlyResult(string month, string copyTraderName, decimal result)
+        {
+            invests.CopyTraders.UpdateMonthlyResult(month, copyTraderName, result);
         }
     }
 }
