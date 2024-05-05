@@ -28,7 +28,7 @@ namespace spendTrack.IntegrationTest
             var stocks = await repository.GetStocks();
 
             service.AddStockInvest(existingMonth, stockName, existingInvest);
-            service.UpdateStockResUpdateStockResultult(existingMonth, stockName, existingResult);
+            service.UpdateStockResult(existingMonth, stockName, existingResult);
             service.AddStockInvest(newMonth, stockName, stockInvest);
 
             var stock = stocks.GetStock(stockName);
@@ -58,7 +58,7 @@ namespace spendTrack.IntegrationTest
             var indexFunds = await repository.GetIndexFunds();
 
             service.AddIndexFundInvest(existingMonth, indexFundName, existingInvest);
-            service.UpdateIndexFundResUpdateStockResultult(existingMonth, indexFundName, existingResult);
+            service.UpdateIndexFundResult(existingMonth, indexFundName, existingResult);
             service.AddIndexFundInvest(newMonth, indexFundName, indexFundInvest);
 
             var indexFund = indexFunds.GetIndexFund(indexFundName);
@@ -88,7 +88,7 @@ namespace spendTrack.IntegrationTest
             var copyTraders = await repository.GetCopyTraders();
 
             service.AddCopyTraderInvest(existingMonth, copyTraderName, existingInvest);
-            service.UpdateCopyTraderResUpdateStockResultult(existingMonth, copyTraderName, existingResult);
+            service.UpdateCopyTraderResult(existingMonth, copyTraderName, existingResult);
             service.AddCopyTraderInvest(newMonth, copyTraderName, copyTraderInvest);
 
             var copyTrader = copyTraders.GetCopyTrader(copyTraderName);
