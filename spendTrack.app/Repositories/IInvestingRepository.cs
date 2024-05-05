@@ -11,5 +11,6 @@ namespace spendTrack.App.Repositories
         void AddStockMonthlyInvest(string month, string name, decimal amount);
         void AddIndexFundMonthlyInvest(string month, string name, decimal amount);
         void AddCopyTraderMonthlyInvest(string month, string copyTraderName, decimal amount);
+        void UpdateCopyTraderMonthlyResult(string month, string stockName, decimal result);
     }
 }

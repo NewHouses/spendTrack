@@ -13,8 +13,7 @@ namespace spendTrack.Invest.Domain
             MonthlyInvests = monthlyInvests;
             if (MonthlyInvests.Count > 0)
             {
-                TotalInvest = monthlyInvests.Sum(mi => mi.Value.Invest);
-                AvarageMonthlyProfitIndex = monthlyInvests.Sum(mi => mi.Value.ProfitIndex) / monthlyInvests.Count;
+                UpdateTotalInvest();
             }
         }
 
@@ -24,19 +23,34 @@ namespace spendTrack.Invest.Domain
 
             if (MonthlyInvests.Count > 0)
             {
+                var lastMonth = MonthlyInvests.Last().Value;
+                if (lastMonth.resultUpdated is false)
+                    throw new Exception("Last month result is not updated");
+
                 newMonthlyTotalInvest = MonthlyInvests.Last().Value.Result + invest;
             }
+
             var newMonthlyInvest = new MonthlyInvest(month, invest, newMonthlyTotalInvest);
             MonthlyInvests.Add(newMonthlyInvest.Month, newMonthlyInvest);
 
-            TotalInvest = MonthlyInvests.Sum(mi => mi.Value.Invest);
-            AvarageMonthlyProfitIndex = Math.Round(MonthlyInvests.Sum(mi => mi.Value.ProfitIndex) / MonthlyInvests.Count, 2);
+            UpdateTotalInvest();
         }
 
-        public void AddMonthlyResult(decimal result)
+        public void UpdateMonthlyResult(string month, decimal result)
         {
-            var lastMonth = MonthlyInvests.Last().Value;
-            lastMonth.AddResult(result);
+            var monthlyInvest = MonthlyInvests.GetValueOrDefault(month);
+            if (monthlyInvest is null)
+                throw new ArgumentException($"There was not investment in the month of {month}");
+
+            monthlyInvest.AddResult(result);
+
+            UpdateTotalInvest();
+        }
+
+        private void UpdateTotalInvest()
+        {
+            TotalInvest = MonthlyInvests.Sum(mi => mi.Value.Invest);
+            AvarageMonthlyProfitIndex = Math.Round(MonthlyInvests.Sum(mi => mi.Value.ProfitIndex) / MonthlyInvests.Count, 2);
         }
     }
 }

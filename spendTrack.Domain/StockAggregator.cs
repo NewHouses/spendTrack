@@ -27,5 +27,15 @@
 
             stock.AddMonthlyInvest(month, invest);
         }
+
+        public void UpdateMonthlyResult(string month, string stockName, decimal result)
+        {
+            var stock = GetStock(stockName);
+
+            if (stock is null)
+                throw new ArgumentException($"Stock {stockName} does not exist");
+
+            stock.UpdateMonthlyResult(month, result);
+        }
     }
 }

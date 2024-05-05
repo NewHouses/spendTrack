@@ -5,6 +5,7 @@
         void AddStockInvest(string month, string stockName, decimal amount);
         void AddIndexFundInvest(string month, string indexFundName, decimal amount);
         void AddCopyTraderInvest(string month, string copyTraderName, decimal amount);
+        void UpdateStockResult(string month, string stockName, decimal result);
         //Task GenerateCsv(string filePath);
     }
 }

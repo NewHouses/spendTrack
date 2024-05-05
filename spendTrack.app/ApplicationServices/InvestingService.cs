@@ -28,6 +28,11 @@ namespace spendTrack.App.ApplicationServices
             repository.AddCopyTraderMonthlyInvest(month, copyTraderName, amount);
         }
 
+        public void UpdateStockResult(string month, string stockName, decimal result)
+        {
+            repository.UpdateCopyTraderMonthlyResult(month, stockName, result);
+        }
+
         //public async Task GenerateCsv(string filePath)
         //{
         //    var stocks = await repository.GetStocks();

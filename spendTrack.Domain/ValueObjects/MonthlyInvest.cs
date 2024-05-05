@@ -10,6 +10,7 @@ namespace spendTrack.Invest.Domain.ValueObjects
         public decimal ProfitIndex { get; set; }
         public decimal Profit { get; set; }
         public decimal Result { get; set; }
+        public bool resultUpdated = false;
 
         public MonthlyInvest(string month, decimal invest, decimal totalInvest)
         {
@@ -26,6 +27,7 @@ namespace spendTrack.Invest.Domain.ValueObjects
             Result = result;
             Profit = Result - TotalInvest;
             ProfitIndex = Math.Round(100 * Profit / TotalInvest, 2);
+            resultUpdated = true;
         }
     }
 }
