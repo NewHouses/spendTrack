@@ -1,0 +1,21 @@
+,,Total Invest, Average Monthly Index %
+,,"2200,00","14,16"
+Month,Monthly Historic Invest,Monthly Invest,Monthly Profit index %,Monthly Profit,Monthly Result,
+"03/2024","400,00","400,00","5","20,00","420,00"
+"04/2024","920,00","500,00","7,61","70,00","990,00"
+"05/2024","1440,00","600,00","29,86","430,00","1870,00"
+"06/2024","2080,00","700,00","0","0","0"
+,,Stocks Total Invest,Stocks Average Monthly Index %,,,,S&P500 Total Invest,S&P500 Average Monthly Index %,,,,CT Total Invest,CT Average Monthly Index %
+,,"1500,00","9,50",,,,"300,00","31",,,,"400,00","5"
+Month,Stocks Monthly Historic Invest,Stocks Monthly Invest,Stocks Monthly Invest index %,Stocks Profit,Stocks Result,S&P500 Monthly Historic Invest,S&P500 Monthly Invest,S&P500 Monthly Invest index %,S&P500 Profit,S&P500 Result,CT Monthly Historic Invest,CT Monthly Invest,CT Monthly Invest index %,CT Profit,CT Result
+"03/2024","400,00","400,00","5","20,00","420,00","","","","","","","","","",""
+"04/2024","820,00","400,00","2,44","20,00","840,00","100,00","100,00","50","50,00","150,00","","","","",""
+"05/2024","1140,00","300,00","21,05","240,00","1380,00","250,00","100,00","12","30,00","280,00","200,00","200,00","5","10,00","210,00"
+"06/2024","1780,00","400,00","0","0","0","380,00","100,00","0","0","0","410,00","200,00","0","0","0"
+,,stock-1 Total Invest, stock-1 Average Monthly Index %,,,,stock-2 Total Invest, stock-2 Average Monthly Index %,,,,stock-3 Total Invest, stock-3 Average Monthly Index %,,,,stock-4 Total Invest, stock-4 Average Monthly Index %,,,,indexFund-1 Total Invest, indexFund-1 Average Monthly Index %,,,,copyTrader-1 Total Invest, copyTrader-1 Average Monthly Index %,,,,copyTrader-2 Total Invest, copyTrader-2 Average Monthly Index %,,,,
+,,"400,00","18,04",,,,"400,00","16,95",,,,"300,00","17,35",,,,"400,00","3,82",,,,"300,00","31",,,,"200,00","20",,,,"200,00","-10",,,,
+Month,stock-1 Monthly Historic Invest,stock-1 Monthly Invest,stock-1 Monthly Invest index %,stock-1 Profit,stock-1 Result,stock-2 Monthly Historic Invest,stock-2 Monthly Invest,stock-2 Monthly Invest index %,stock-2 Profit,stock-2 Result,stock-3 Monthly Historic Invest,stock-3 Monthly Invest,stock-3 Monthly Invest index %,stock-3 Profit,stock-3 Result,stock-4 Monthly Historic Invest,stock-4 Monthly Invest,stock-4 Monthly Invest index %,stock-4 Profit,stock-4 Result,indexFund-1 Monthly Historic Invest,indexFund-1 Monthly Invest,indexFund-1 Monthly Invest index %,indexFund-1 Profit,indexFund-1 Result,copyTrader-1 Monthly Historic Invest,copyTrader-1 Monthly Invest,copyTrader-1 Monthly Invest index %,copyTrader-1 Profit,copyTrader-1 Result,copyTrader-2 Monthly Historic Invest,copyTrader-2 Monthly Invest,copyTrader-2 Monthly Invest index %,copyTrader-2 Profit,copyTrader-2 Result,
+03/2024,"100,00","100,00","50","50,00","150,00","100,00","100,00","20","20,00","120,00","100,00","100,00","-50","-50,00","50,00","100,00","100,00","0","0,00","100,00","","","","","","","","","","","","","","","",
+04/2024,"250,00","100,00","-8","-20,00","230,00","220,00","100,00","22,73","50,00","270,00","150,00","100,00","-13,33","-20,00","130,00","200,00","100,00","5","10,00","210,00","100,00","100,00","50","50,00","150,00","","","","","","","","","","",
+05/2024,"330,00","100,00","12,12","40,00","370,00","370,00","100,00","8,11","30,00","400,00","130,00","0","115,38","150,00","280,00","310,00","100,00","6,45","20,00","330,00","250,00","100,00","12","30,00","280,00","100,00","100,00","20","20,00","120,00","100,00","100,00","-10","-10,00","90,00",
+06/2024,"470,00","100,00","0","0","0","500,00","100,00","0","0","0","380,00","100,00","0","0","0","430,00","100,00","0","0","0","380,00","100,00","0","0","0","220,00","100,00","0","0","0","190,00","100,00","0","0","0",

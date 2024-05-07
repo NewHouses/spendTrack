@@ -23,11 +23,30 @@ namespace spendTrack.UnitTest.CopyTraders
         }
 
         [Test]
+        public void IsAddedToTheCopyTraderAggregator()
+        {
+            var copyTraders = new CopyTraderAggregator(new List<CopyTrader>());
+            var firstMonth = "02/2024";
+            var monthlyInvestment = 100.00M;
+
+            copyTraders.AddMonthlyInvest(firstMonth, "copyTrader1", monthlyInvestment);
+            copyTraders.AddMonthlyInvest(firstMonth, "copyTrader2", monthlyInvestment);
+
+            Assert.That(copyTraders.TotalInvest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(copyTraders.AvarageMonthlyProfitIndex, Is.EqualTo(0));
+            Assert.That(copyTraders.MonthlyInvests[firstMonth].TotalInvest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(copyTraders.MonthlyInvests[firstMonth].Invest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(copyTraders.MonthlyInvests[firstMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(copyTraders.MonthlyInvests[firstMonth].Profit, Is.EqualTo(0));
+            Assert.That(copyTraders.MonthlyInvests[firstMonth].Result, Is.EqualTo(0));
+        }
+
+        [Test]
         public void ThrowsExeceptionIfLastMonthResultWasNotUpdated()
         {
             var copytrader = new CopyTrader("copytrader1");
             var firstMonth = "02/2024";
-            var secondMonth = "02/2024";
+            var secondMonth = "03/2024";
             var monthlyInvestment = 100.00M;
 
             copytrader.AddMonthlyInvest(firstMonth, monthlyInvestment);

@@ -23,11 +23,30 @@ namespace spendTrack.UnitTest.Stocks
         }
 
         [Test]
+        public void IsAddedToTheStockAggregator()
+        {
+            var stocks = new StockAggregator(new List<Stock>());
+            var firstMonth = "02/2024";
+            var monthlyInvestment = 100.00M;
+
+            stocks.AddMonthlyInvest(firstMonth, "stock1", monthlyInvestment);
+            stocks.AddMonthlyInvest(firstMonth, "stock2", monthlyInvestment);
+
+            Assert.That(stocks.TotalInvest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(stocks.AvarageMonthlyProfitIndex, Is.EqualTo(0));
+            Assert.That(stocks.MonthlyInvests[firstMonth].TotalInvest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(stocks.MonthlyInvests[firstMonth].Invest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(stocks.MonthlyInvests[firstMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(stocks.MonthlyInvests[firstMonth].Profit, Is.EqualTo(0));
+            Assert.That(stocks.MonthlyInvests[firstMonth].Result, Is.EqualTo(0));
+        }
+
+        [Test]
         public void ThrowsExeceptionIfLastMonthResultWasNotUpdated()
         {
             var stock = new Stock("stock1");
             var firstMonth = "02/2024";
-            var secondMonth = "02/2024";
+            var secondMonth = "03/2024";
             var monthlyInvestment = 100.00M;
 
             stock.AddMonthlyInvest(firstMonth, monthlyInvestment);

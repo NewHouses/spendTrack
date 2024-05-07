@@ -1,11 +1,13 @@
 ﻿
+using spendTrack.Invest.Domain.ValueObjects;
+
 namespace spendTrack.Invest.Domain
 {
-    public class IndexFundAggregator
+    public class IndexFundAggregator : Invest
     {
         public Dictionary<string, IndexFund> IndexFunds;
 
-        public IndexFundAggregator(List<IndexFund> indexFunds)
+        public IndexFundAggregator(List<IndexFund> indexFunds) : base(new Dictionary<string, MonthlyInvest>())
         {
             IndexFunds = new Dictionary<string, IndexFund>();
             indexFunds.ForEach(i => IndexFunds.Add(i.Name, i));
@@ -27,6 +29,7 @@ namespace spendTrack.Invest.Domain
             }
 
             indexFund.AddMonthlyInvest(month, invest);
+            AddMonthlyInvest(month, invest);
         }
 
         public void UpdateMonthlyResult(string month, string indexFundName, decimal result)
@@ -37,6 +40,9 @@ namespace spendTrack.Invest.Domain
                 throw new ArgumentException($"Index Fund {indexFundName} does not exist");
 
             stock.UpdateMonthlyResult(month, result);
+
+            var newResult = IndexFunds.Where(s => s.Value.MonthlyInvests.ContainsKey(month)).Sum(s => s.Value.MonthlyInvests[month].Result);
+            UpdateMonthlyResult(month, newResult);
         }
     }
 }

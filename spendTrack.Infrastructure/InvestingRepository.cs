@@ -11,6 +11,12 @@ namespace spendTrack.Infrastructure
         {
             invests = new Invests(new List<Stock>(), new List<IndexFund>(), new List<CopyTrader>());
         }
+
+        public Task<Invests> GetInvests()
+        {
+            return Task.FromResult(invests);
+        }
+
         public Task<StockAggregator> GetStocks()
         {
             return Task.FromResult(invests.Stocks);
@@ -33,33 +39,32 @@ namespace spendTrack.Infrastructure
 
         public void AddStockMonthlyInvest(string month, string stockName, decimal amount)
         {
-            invests.Stocks.AddMonthlyInvest(month, stockName, amount);
+            invests.AddStockInvest(month, stockName, amount);
         }
 
         public void AddIndexFundMonthlyInvest(string month, string indexFundName, decimal amount)
         {
-            invests.IndexFunds.AddMonthlyInvest(month, indexFundName, amount);
-
+            invests.AddIndexFundInvest(month, indexFundName, amount);
         }
 
         public void AddCopyTraderMonthlyInvest(string month, string copyTraderName, decimal amount)
         {
-            invests.CopyTraders.AddMonthlyInvest(month, copyTraderName, amount);
+            invests.AddCopyTraderInvest(month, copyTraderName, amount);
         }
 
         public void UpdateStockMonthlyResult(string month, string stockName, decimal result)
         {
-            invests.Stocks.UpdateMonthlyResult(month, stockName, result);
+            invests.UpdateStockResult(month, stockName, result);
         }
 
         public void UpdateIndexFundMonthlyResult(string month, string indexfundName, decimal result)
         {
-            invests.IndexFunds.UpdateMonthlyResult(month, indexfundName, result);
+            invests.UpdateIndexFundResult(month, indexfundName, result);
         }
 
         public void UpdateCopyTraderMonthlyResult(string month, string copyTraderName, decimal result)
         {
-            invests.CopyTraders.UpdateMonthlyResult(month, copyTraderName, result);
+            invests.UpdateCopyTraderResult(month, copyTraderName, result);
         }
     }
 }

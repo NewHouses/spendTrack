@@ -1,10 +1,12 @@
-﻿namespace spendTrack.Invest.Domain
+﻿using spendTrack.Invest.Domain.ValueObjects;
+
+namespace spendTrack.Invest.Domain
 {
-    public class CopyTraderAggregator
+    public class CopyTraderAggregator : Invest
     {
         public Dictionary<string, CopyTrader> CopyTraders;
 
-        public CopyTraderAggregator(List<CopyTrader> copyTraders)
+        public CopyTraderAggregator(List<CopyTrader> copyTraders) : base(new Dictionary<string, MonthlyInvest>())
         {
             CopyTraders = new Dictionary<string, CopyTrader>();
             copyTraders.ForEach(ct =>  CopyTraders.Add(ct.Name, ct));
@@ -26,6 +28,7 @@
             }
 
             copyTrader.AddMonthlyInvest(month, invest);
+            AddMonthlyInvest(month, invest);
         }
 
         public void UpdateMonthlyResult(string month, string copyTraderName, decimal result)
@@ -36,6 +39,9 @@
                 throw new ArgumentException($"Copy Trader {copyTraderName} does not exist");
 
             copyTrader.UpdateMonthlyResult(month, result);
+
+            var newResult = CopyTraders.Where(s => s.Value.MonthlyInvests.ContainsKey(month)).Sum(s => s.Value.MonthlyInvests[month].Result);
+            UpdateMonthlyResult(month, newResult);
         }
     }
 }

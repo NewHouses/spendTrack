@@ -43,13 +43,11 @@ namespace spendTrack.App.ApplicationServices
             repository.UpdateCopyTraderMonthlyResult(month, copytraderName, result);
         }
 
-        //public async Task GenerateCsv(string filePath)
-        //{
-        //    var stocks = await repository.GetStocks();
-        //    var indexFunds = await repository.GetIndexFunds();
-        //    var copyTraders = await repository.GetCopyTraders();
+        public async Task GenerateCsv(string filePath)
+        {
+            var invests = await repository.GetInvests();
 
-        //    await outputGenerator.GenerateOutput(stocks, indexFunds, copyTraders, filePath);
-        //}
+            await outputGenerator.GenerateOutput(invests, filePath);
+        } 
     }
 }

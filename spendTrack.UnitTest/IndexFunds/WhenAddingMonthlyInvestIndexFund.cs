@@ -23,11 +23,30 @@ namespace spendTrack.UnitTest.IndexFunds
         }
 
         [Test]
+        public void IsAddedToTheIndexFundAggregator()
+        {
+            var indexFunds = new IndexFundAggregator(new List<IndexFund>());
+            var firstMonth = "02/2024";
+            var monthlyInvestment = 100.00M;
+
+            indexFunds.AddMonthlyInvest(firstMonth, "indexFund1", monthlyInvestment);
+            indexFunds.AddMonthlyInvest(firstMonth, "indexFund2", monthlyInvestment);
+
+            Assert.That(indexFunds.TotalInvest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(indexFunds.AvarageMonthlyProfitIndex, Is.EqualTo(0));
+            Assert.That(indexFunds.MonthlyInvests[firstMonth].TotalInvest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(indexFunds.MonthlyInvests[firstMonth].Invest, Is.EqualTo(2 * monthlyInvestment));
+            Assert.That(indexFunds.MonthlyInvests[firstMonth].ProfitIndex, Is.EqualTo(0));
+            Assert.That(indexFunds.MonthlyInvests[firstMonth].Profit, Is.EqualTo(0));
+            Assert.That(indexFunds.MonthlyInvests[firstMonth].Result, Is.EqualTo(0));
+        }
+
+        [Test]
         public void ThrowsExeceptionIfLastMonthResultWasNotUpdated()
         {
             var indexfund = new IndexFund("indexfund1");
             var firstMonth = "02/2024";
-            var secondMonth = "02/2024";
+            var secondMonth = "03/2024";
             var monthlyInvestment = 100.00M;
 
             indexfund.AddMonthlyInvest(firstMonth, monthlyInvestment);

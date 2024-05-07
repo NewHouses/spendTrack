@@ -4,9 +4,10 @@ namespace spendTrack.App.Repositories
 {
     public interface IInvestingRepository
     {
-        Task<CopyTraderAggregator> GetCopyTraders();
-        Task<IndexFundAggregator> GetIndexFunds();
+        Task<Invests> GetInvests();
         Task<StockAggregator> GetStocks();
+        Task<IndexFundAggregator> GetIndexFunds();
+        Task<CopyTraderAggregator> GetCopyTraders();
         Stock GetStockByName(string name);
         void AddStockMonthlyInvest(string month, string name, decimal amount);
         void AddIndexFundMonthlyInvest(string month, string name, decimal amount);
